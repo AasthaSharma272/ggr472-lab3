@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Where Is It Safe to Bike in Toronto?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Load Mapbox GL JS library and CSS for map functionality -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+
+  <!-- Link to custom stylesheet for layout and styling -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Title and description banner displayed at the top of the map -->
+    <div id="title">
+        <h1>Where Is It Safe to Bike in Toronto?</h1>
+        <p>
+            Explore cycling infrastructure by comfort level, reported bicycle thefts (2014–2026), 
+            and indoor/outdoor bike parking locations across the city.
+        </p>
+    </div>
+
+    <!-- Button to toggle the information panel visibility -->
+    <button id="infoToggle">About This Map</button>
+
+    <!-- Information panel with description (initially hidden) -->
+    <div id="infoBox" style="display:none;">
+        <p>
+            Cycling routes are classified by infrastructure comfort level, from shared roadways 
+            (sharrows) to fully separated cycle tracks and multi-use trails. Bicycle theft incidents 
+            are clustered to reveal spatial patterns over time.
+        </p>
+    </div>
+  
+  <!-- Left control panel for user interaction: filters and sliders -->
+  <div id="controls">
+    <!-- Dropdown to filter cycling infrastructure by type -->
+    <h3>Filter Cycling Infrastructure</h3>
+    <select id="infraFilter">
+        <option value="all">All Infrastructure</option>
+        <option value="Multi-Use Trail">Multi-Use Trail</option>
+        <option value="Cycle Track">Cycle Track</option>
+        <option value="Bike Lane">Bike Lane</option>
+        <option value="Sharrows">Sharrows</option>
+        <option value="Signed Route">Signed Route</option>
+    </select>
+
+    <!-- Range slider to filter bicycle thefts by year -->
+    <h3>Filter Thefts by Year</h3>
+
+    <input type="range" id="yearSlider" min="2014" max="2026" step="1" value="2014">
+    <p>Showing thefts from: <span id="yearValue">2014</span> onward</p>
+
+    <!-- Button to highlight only the safest infrastructure types -->
+    <button id="highlightComfort">Highlight High-Comfort Routes</button>
+    <!-- Button to reset all filters to default state -->
+    <button id="resetFilters">Reset</button>
+  </div>
+
+  <!-- Right panel displaying legend: color coding and symbol meanings -->
+  <div id="legend">
+        <h3>Legend</h3>
+
+        <!-- Cycling infrastructure categories with color swatches -->
+        <h4>Cycling Infrastructure</h4>
+
+        <div class="legend-item">
+        <span class="line swatch-trail"></span>
+        Multi-Use Trail
+        </div>
+
+        <div class="legend-item">
+        <span class="line swatch-track"></span>
+        Cycle Track
+        </div>
+
+        <div class="legend-item">
+        <span class="line swatch-lane"></span>
+        Bike Lane
+        </div>
+
+        <div class="legend-item">
+        <span class="line swatch-sharrow"></span>
+        Sharrows
+        </div>
+
+        <div class="legend-item">
+        <span class="line swatch-signed"></span>
+        Signed Route
+        </div>
+
+        <div class="legend-item">
+        <span class="line swatch-park"></span>
+        Park Road
+        </div>
+
+        <!-- Bicycle theft cluster classifications with color swatches -->
+        <h4>Bicycle Thefts</h4>
+        <div class="legend-item"><span class="circle theft-low"></span> Cluster (low)</div>
+        <div class="legend-item"><span class="circle theft-mid"></span> Cluster (mid)</div>
+        <div class="legend-item"><span class="circle theft-high"></span> Cluster (high)</div>
+        <div class="legend-item"><span class="circle theft-point"></span> Single theft</div>
+
+        <!-- Bike parking location types with color swatches -->
+        <h4>Bike Parking</h4>
+        <div class="legend-item"><span class="circle parking-indoor"></span> Indoor parking</div>
+        <div class="legend-item"><span class="circle parking-outdoor"></span> Outdoor parking</div>
+    </div>
+
+  <!-- Container for the Mapbox map (will fill entire remaining viewport) -->
+  <div id="map"></div>
+
+  <!-- Load Mapbox GL JS library for interactive mapping functionality -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+  <!-- Link to custom JavaScript file for map initialization and interactivity -->
+  <script src="script.js"></script>
+
+</body>
+</html>
